@@ -12,6 +12,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "micro": "^9.1.4",
+    "rss": "^1.2.2",
     "superagent": "^3.8.2",
     "url": "^0.11.0"
   },

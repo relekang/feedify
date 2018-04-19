@@ -1,6 +1,7 @@
 const cheerio = require("cheerio");
 const request = require("superagent");
 const url = require("url");
+const rss = require("rss");
 
 module.exports = async function handler(req, res) {
   const { pathname, query } = url.parse(req.url, /* parseQueryString */ true);
@@ -9,7 +10,7 @@ module.exports = async function handler(req, res) {
   console.log(query);
 
   const $ = cheerio.load(response.text);
-  return $(query.mainSelector)
+  const data = $(query.mainSelector)
     .find(query.itemSelector)
     .map((index, element) => {
       const title = $(element)
@@ -27,4 +28,8 @@ module.exports = async function handler(req, res) {
     })
     .get()
     .filter(item => item.title);
+
+  const feed = rss({})
+  data.map(feed.item)
+  return feed.xml()
 };
