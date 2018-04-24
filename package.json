@@ -9,6 +9,9 @@
     "start": "micro index.js",
     "dev": "micro-dev index.js"
   },
+  "now": {
+    "alias": "rss-gen.now.sh"
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "cicero-form-validator": "^1.2.0",
