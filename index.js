@@ -22,7 +22,7 @@ function format({query, title, items, res}) {
 
     case "rss":
     default:
-      res.setHeader('Content-Type', 'application/atom+xml')
+      res.setHeader('Content-Type', 'application/atom+xml; charset=utf-8')
       return new rss({title, url: query.url}, items.map(item => ({ ...item, categories: [] }))).xml();
   }
 }
