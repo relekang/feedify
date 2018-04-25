@@ -16,7 +16,10 @@
     "cheerio": "^1.0.0-rc.2",
     "cicero-form-validator": "^1.2.0",
     "micro": "^9.1.4",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "rss": "^1.2.2",
+    "sentence-case": "^2.1.1",
     "superagent": "^3.8.2",
     "url": "^0.11.0"
   },
