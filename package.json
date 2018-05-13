@@ -1,8 +1,8 @@
 {
-  "name": "rss-generator",
+  "name": "feedify",
   "version": "0.0.0",
   "main": "index.js",
-  "repository": "git@github.com:relekang/rss-generator.git",
+  "repository": "git@github.com:relekang/feedify.git",
   "author": "Rolf Erik Lekang <me@rolflekang.com>",
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "dev": "micro-dev index.js"
   },
   "now": {
-    "alias": "rss-gen.now.sh"
+    "alias": "feedify.now.sh"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
