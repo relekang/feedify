@@ -7,6 +7,7 @@ const url = require("url");
 const { renderToString } = require("react-dom/server");
 const React = require("react");
 const sentenceCase = require("sentence-case");
+const { parseDate } = require('chrono-node')
 const { createElement } = React;
 
 const validate = data => {
@@ -38,12 +39,16 @@ async function fetchFeed({ query }) {
         $(element)
           .find(query.linkSelector)
           .text() || query.url;
+      const date = parseDate($(element)
+        .find(query.dateSelector)
+        .text()
+        .trim());
       const description = $(element)
         .find(query.descriptionSelector)
         .text()
         .trim();
 
-      return { title, url, description };
+      return { title, url, date: date ? date.toISOString() : date, description };
     })
     .get()
     .filter(item => item.title);
@@ -59,7 +64,7 @@ function ui({ query, title, items }) {
       [
         createElement("h1", {}, "Feedify"),
         createElement("form", {}, [
-          ...["url", "mainSelector", "itemSelector", "titleSelector"].map(name =>
+          ...["url", "mainSelector", "itemSelector", "titleSelector", "dateSelector"].map(name =>
             createElement(
               "label",
               { htmlFor: name, style: { display: "flex", margin: "0.5rem", alignItems: "center" } },
@@ -79,7 +84,7 @@ function ui({ query, title, items }) {
           createElement(
             "ul",
             {},
-            items.map(item => createElement("li", { key: item.title }, item.title))
+            items.map(item => createElement("li", { key: item.title }, item.title + " - " + item.date))
           ),
         ]),
       ]
